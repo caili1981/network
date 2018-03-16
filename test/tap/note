@@ -13,6 +13,7 @@ tun收上来的是原始二层报文，和发送的一致。
 dpdk-app -> (无需报文data的拷贝,只有mbuf->skbuf) kenern --> 用户态 (data的拷贝). 
 相比之下，kni比tun/tap性能更高。
 
+netstat -nr
 tun 接口的作用一般是用来做vpn. 例如，我们常用的在家上网的技术，就是通过tun接口来实现的：
 1.  登录软件会在系统中设置一个default路由。
 Destination        Gateway            Flags        Refs      Use   Netif Expire
