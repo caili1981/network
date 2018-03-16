@@ -1,6 +1,7 @@
 
 对于tun／tap，这片文章讲的非常清楚：https://segmentfault.com/a/1190000009249039
 Linux下bridge这篇文章讲的比较清楚：https://segmentfault.com/a/1190000009491002
+veth/tun/tap 这篇文章讲的很清楚：http://blog.csdn.net/sld880311/article/details/77854651
 tap 是一个模拟的二层接口, 如果两个tap口通过br相连，则两个tap之间可以互相通过write／read来进行通信，但是这不一定非的是报文。 write一次写一整个报文，如果read指定的长度比write短，那么read只会读取指定长度的报文。
 如果bridge配置了ip，则可以通过这个三层口来ping，以使得kernel发送arp信息。这时，两个tap口都能收到报文。
 tun/tap 接口一端连接的是设备，另一个端口则可以连接其他设备，如ovs/或者Linux bridge。 
