@@ -3,4 +3,21 @@
 Linux下bridge这篇文章讲的比较清楚：https://segmentfault.com/a/1190000009491002
 tap 是一个模拟的二层接口, 如果两个tap口通过br相连，则两个tap之间可以互相通过write／read来进行通信，但是这不一定非的是报文。 write一次写一整个报文，如果read指定的长度比write短，那么read只会读取指定长度的报文。
 如果bridge配置了ip，则可以通过这个三层口来ping，以使得kernel发送arp信息。这时，两个tap口都能收到报文。
-如果是三个tap口和bridge相连，则bridge会广播位置mac表的报文，这会导致很多tap1发的报文，tap2，tap3都能收到（没有验证,理论上说，这个虚拟的交换机应该和物理交换机的行为一致.）
+tun/tap 接口一端连接的是设备，另一个端口则可以连接其他设备，如ovs/或者Linux bridge。 
+tun收上来的是原始二层报文，和发送的一致。
+而tun收上来的则是原始三层报文，可以可以把这个原始三层报文整个装载在一个ip报文里发送出去，这样就可以实现ip in ip的tunnel。
+如果通过三层tun口（将实例中 TAP换成TUN，发送一个任意长度的数组，则很有可能出现如下现象，因为数组根本不是一个正常的ip报文：
+06:08:00.827646 IP6 truncated-ip6 - 28447 bytes missing!2039:305d:: > ::: ip-proto-32 28507
+而想将此tun口加入Linux bridge会失败，为什么？
+root@cnrdvm35:/dev/net# brctl addif vbr my_test_tap_cli
+can't add my_test_tap_cli to bridge vbr: Invalid argument
+
+
+如果是三个tap口和bridge相连，则bridge会广播位置mac表的报文，这会导致很多tap1发的报文，tap2，tap3都能收到
+（没有验证,理论上说，这个虚拟的交换机应该和物理交换机的行为一致.）
+
+tun veth区别是什么？
+/dev/net/tun 这个文件时干嘛用的？
+ubuntu的veth为什么直连不能ping通？ 如： ping 1.1.1.2 -I veth1  （通过这个命令ping veth2/1.1.1.2) arp没有正常响应？why？
+
+
