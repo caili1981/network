@@ -8,6 +8,10 @@ tun收上来的是原始二层报文，和发送的一致。
 而tun收上来的则是原始三层报文，可以可以把这个原始三层报文整个装载在一个ip报文里发送出去，这样就可以实现ip in ip的tunnel。
 如果通过三层tun口（将实例中 TAP换成TUN，发送一个任意长度的数组，则很有可能出现如下现象，因为数组根本不是一个正常的ip报文：
 06:08:00.827646 IP6 truncated-ip6 - 28447 bytes missing!2039:305d:: > ::: ip-proto-32 28507
+从这也能看出，tap 接口虽然看上去是用户态到用户态，但是实际上它需要 app1->kernel->app2, 这是需要两次拷贝的。
+相比之下kni的好处是，它性能更高，只需要内核态到用户到内核态的拷贝，它的处理过程是:  
+dpdk-app -> (无需报文data的拷贝,只有mbuf->skbuf) kenern --> 用户态 (data的拷贝). 
+相比之下，kni比tun/tap性能更高。
 而想将此tun口加入Linux bridge会失败，为什么？
 root@cnrdvm35:/dev/net# brctl addif vbr my_test_tap_cli
 can't add my_test_tap_cli to bridge vbr: Invalid argument
