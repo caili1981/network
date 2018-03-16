@@ -12,6 +12,19 @@ tun收上来的是原始二层报文，和发送的一致。
 相比之下kni的好处是，它性能更高，只需要内核态到用户到内核态的拷贝，它的处理过程是:  
 dpdk-app -> (无需报文data的拷贝,只有mbuf->skbuf) kenern --> 用户态 (data的拷贝). 
 相比之下，kni比tun/tap性能更高。
+
+tun 接口的作用一般是用来做vpn. 例如，我们常用的在家上网的技术，就是通过tun接口来实现的：
+1.  登录软件会在系统中设置一个default路由。
+Destination        Gateway            Flags        Refs      Use   Netif Expire
+default            172.29.108.192     UGSc           65        1   utun0
+
+2.  ping 10.208.1.123      会首先查本地路由表，查不到，则选择默认路由, 将报文发 tun 接口。
+3.  远程登录软件是这个tun接口的绑定程序，将三层报文封装在ip-sec/ssl tunnel 里发往公司网关.
+4.  运营商将报文做nat, 并转发到公司目的地址。
+5.  公司收到报文，进行解密，获取内层的ip报文。
+6.  在公司的内网进行转发，最终到达指定目的。
+
+
 而想将此tun口加入Linux bridge会失败，为什么？
 root@cnrdvm35:/dev/net# brctl addif vbr my_test_tap_cli
 can't add my_test_tap_cli to bridge vbr: Invalid argument
