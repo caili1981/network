@@ -13,6 +13,8 @@ tun收上来的是原始二层报文，和发送的一致。
 相比之下kni的好处是，它性能更高，只需要内核态到用户到内核态的拷贝，它的处理过程是:  
 dpdk-app -> (无需报文data的拷贝,只有mbuf->skbuf) kenern --> 用户态 (data的拷贝). 
 相比之下，kni比tun/tap性能更高。
+<unix domain socket>这个是用来纯发数据的端口，实现的是user-app到user－app的拷贝，而不需要通过kernel，而且他是不会丢失和乱序的。
+普通socket实现app－app之间的通信，是需要经过内核转发的。
 
 netstat -nr
 tun 接口的作用一般是用来做vpn. 例如，我们常用的在家上网的技术，就是通过tun接口来实现的：
