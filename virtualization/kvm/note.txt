@@ -69,6 +69,19 @@ kvm目前对热插拔的支持还不完善，主要支持：cpu，pci的热插�
   2.  将源vm的cpu信息，和首次拷贝之后的增删改传入目的机。暂停源vm。
   3.  启动目的vm快照。
 如果源客户机内存被频繁的修改，而网络速度低于内存修改的速度，则很有可能动态迁移无法完成。
+动态迁移和启动客户机的命令行类似，
+  目的端：后面增加了一个－incoming tcp:0:<port-num>, 表示监听这个端口，通过tcp传输相应信息。
+  源端  : migrate ... 指定目的网络的uri和port。
+sr-iov的动态迁移：
+  1.  vm启动时用系统默认的非sr－iov网卡。
+  2.  迁移时将sriov网卡移除，切换到默认网卡。
+  3.  动态迁移。
+  4.  目的vm的sriov网卡热插入，并切换目的vm到sriov。
+  
+nested VM：
+  1.  kvm已经支持nested VM。如果L1级上想要支持L2－vm。那么在L0，创建L1是需要用命令-nest=host将L0的硬件初始化环境暴露给L1Vm，同理，多多级Vm也是一样的。
+  2.  NestVm 在不同的Vm里支持暂时不是很好。如xen on kvm等等。
+  3.  vsrx里的jcp就是nested Vm。nestedVm性能是一个很大的瓶颈。Virtual－box里的Vm想再装一个kvm，速度极其慢。
 
 
 ethtool是linux下，对网口进行查看和配置的工具。
