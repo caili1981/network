@@ -1,0 +1,5 @@
+ovs包括三个模块：
+  1.  Faucet.  （控制源)
+  2.  openflow subsystem in ovs.
+  3.  open vswitch datapath.
+  
