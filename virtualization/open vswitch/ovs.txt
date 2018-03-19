@@ -1,5 +1,22 @@
-ovs包括三个模块：
-  1.  Faucet.  （控制源)
-  2.  openflow subsystem in ovs.
-  3.  open vswitch datapath.
+ovs 是由一个个的flow－table组成，例如：
+Table 0 Port-based ACLs
+Table 1 Ingress VLAN processing
+Table 2 VLAN-based ACLs
+Table 3 Ingress L2 processing, MAC learning
+Table 4 L3 forwarding for IPv4
+Table 5 L3 forwarding for IPv6
+Table 6 Virtual IP processing, e.g. for router IP addresses implemented by Faucet
+Table 7 Egress L2 processing
+Table 8 Flooding
+每一个flow－table执行一个action或者将流量引入下一个table.
+
+
+ovs的一大目标就是支持openflow，所以某些controller可以直接控制ovs
+
+ovs也分
+  1.  fast-path: 能够在cache里找到的普通包。类似于session的概念。
+  2.  slow-path: 协议包，修改arp表的包。所有slow－path的包会嵌入在ovs－vswitchd。ovs－vswitchd会据此生成一系列的flow－table。
+  3.  
+
+
   
