@@ -78,11 +78,51 @@ sr-iov的动态迁移：
   3.  动态迁移。
   4.  目的vm的sriov网卡热插入，并切换目的vm到sriov。
   
+libvirt的主要管理目标：
+  1.  节点的管理。
+  2.  域的管理。
+  3.  存储的管理，如创建不同的存储镜像等等。
+  4.  网络的管理：如创建bridge，veth，tap设备，vlan的管理，nat的管理，等等。
+  5.  提供一个稳定的可编程api，方便用户管理。
+  
+libvirt常用命令：
+  1.  service libvirtd start/reload/stop/restart.
+  2.  virsh -c <remote_alias>
+  3.  virsh dumpxml <domain_name>
+virsh可以远程登录到指定的uri上，对某个节点进行远程控制。通过virsh提供的shell命令，可以部署自动化脚本，以实现整个系统的自动控制。
+
+virt-v2v
+  1.  可以实现虚拟机到虚拟机的静态迁移。
+  2.  可以实现从kvm到xen的状态迁移。
+  
+virt-p2v
+  1.  可以实现物理机到虚拟机的迁移。
+  2.  目前还不太成熟，且步骤非常复杂。
+  
+  
 nested VM：
   1.  kvm已经支持nested VM。如果L1级上想要支持L2－vm。那么在L0，创建L1是需要用命令-nest=host将L0的硬件初始化环境暴露给L1Vm，同理，多多级Vm也是一样的。
   2.  NestVm 在不同的Vm里支持暂时不是很好。如xen on kvm等等。
   3.  vsrx里的jcp就是nested Vm。nestedVm性能是一个很大的瓶颈。Virtual－box里的Vm想再装一个kvm，速度极其慢。
-
+  
+  
+kvm安全：
+  1.  smep(supervision mode execution protection): 超级用户模式不能访问用户模式的内存，以保护guest－vm的安全。
+  2.  cgroup, 容器里的一个概念，对一组vm进行资源分配和优先级管理，以使得不同group之间不会互相侵占资源。
+  3.  selinux (security-enhanced linux). 每一个用户只能访问本次任务中需要用到的资源，而不是随意访问。
+  4.  镜像文件加密。
+  
+  
+ksm(kernel samepage merge)
+  1.  与fork相反，是通过一个进程对内存监控扫描后，将共享页面合并起来。
+  2.  在vm都是同一个操作系统，运行同一类型操作时非常有用。
+  3.  能降低内存使用率，但是却增加cpu的使用率。
+  
+hugepages／透明hugepage
+  1.  hugepages需要显示调用。而透明的不需要。
+  2.  hugepages未被使用会造成浪费，而透明的不会。
+  3.  hugepages不能被swap出内存，而透明的可以。
+  4.  hugepages性能明显超过透明hugepages。
 
 ethtool是linux下，对网口进行查看和配置的工具。
 lspci可以用来查看设备的pci地址
