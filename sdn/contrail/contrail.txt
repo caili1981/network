@@ -1,0 +1,4 @@
+contrail是juniper发起的sdn架构，和openflow, opendaylight.
+contrail两大主要驱动：
+  1.  云
+  2.  network function virtualization
