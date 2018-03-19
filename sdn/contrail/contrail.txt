@@ -2,3 +2,14 @@ contrail是juniper发起的sdn架构，和openflow, opendaylight.
 contrail两大主要驱动：
   1.  云
   2.  network function virtualization
+  
+contrail 包含：
+  1.  contrail SDN controller. 逻辑上是集中的，但是物理上却是分布式的。（控制，分析，管理）
+  2.  vRouter. （数据平面）。 概念上和open vSwitch类似。
+  
+contrail包含三种接口：
+  1.  北向接口。给更上层应用。
+  2.  南向接口。控制内部网元。
+  3.  东向接口。和其他controller集中操作。
+  
+
