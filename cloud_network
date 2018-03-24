@@ -97,6 +97,13 @@
    2. 利用组播，解决了vtep（vxlan tunnel end point）之间广播报文的传递。只有属于同一个vni的vtep才会收到报文。如arp等。
    3. 组播服务一般需要三层运营商提供（为什么？需要看看组播协议）
    
+   
+ nvgre（microsoft 提供的）
+   1. vxlan采用udp作为封装，而nvgre则采用gre技术进行封装。
+   2. nvgre也采用组播技术，以支持二层内部的广播报文。
+   3. nvgre同样采用24位，作为一个vni的标示。
+   4. nvgre的优势在于gre技术是目前早已广泛支持的技术。vxlan技术，则采用udp的sport（包含了源二层头的hash），以此实现负载均衡？（如何实现）？
+   
       
       
       
