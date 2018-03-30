@@ -27,6 +27,7 @@ SSL握手阶段流程:
  4. 服务器端最后回应。
  
 数字签名：就是私钥加密md5，使得发送端可以无需对整个数据进行加密，同时接收端也可以进行合法性验证。
+SSL密钥生成：先生成私钥，然后根据私钥生成公钥。
 
 openSSL命令使用详解：https://blog.csdn.net/baidu_36649389/article/details/54379935
 ssl背景知识：http://www.cnblogs.com/f-ck-need-u/p/6089523.html
