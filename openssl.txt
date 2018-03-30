@@ -1,3 +1,22 @@
+https://www.jianshu.com/p/d366e5fcd58b
+
 相关标准：
-    1.  加密标准: DES(data encrypt standard)/3DES(DES的一个标准)/AES(Advanced Encrypt standard). 
+    1.  加密标准: DES(data encrypt standard)/3DES(DES的一个标准)/AES(Advanced Encrypt standard).  RSA algorithm(RSA是由三个人一起提出来的）
     2.  完整性验证标准：MD5(Message-Digest Algorithm 5)/SHA(secure hash algorithm).
+    
+身份验证机制：
+    1.  采用基于公钥／密钥的非堆成算法。server先将公钥发送给client，然后利用密钥对一段固定信息进行加密，发送给client，client利用公钥对信息进行解密。如果解密验证成功，则身份验证成功。（如何对公钥进行验证？）
+    
+数据传输机制：
+    1.  采用对称密钥算法（DES／AES等）。
+    
+消息完整性验证
+    1.  采用md5验证。
+    
+对称密钥传输机制：
+    1.  利用非对称算法传输密钥。
+    2.  客户端发起，避免服务器被攻破。client利用server的公钥加密密钥，传输给server。server收到后，利用密钥解密。client传输给server的被称为premaster secret，而真正的密钥是通过premaster secret计算出来的。
+    
+    
+利用PKI保证公钥的真实性 （pki计算量非常大，所以一般只用来验证公钥)，对称加密算法非常快，所以一般用作报文的加密。
+
