@@ -1,0 +1,3 @@
+相关标准：
+    1.  加密标准: DES(data encrypt standard)/3DES(DES的一个标准)/AES(Advanced Encrypt standard). 
+    2.  完整性验证标准：MD5(Message-Digest Algorithm 5)/SHA(secure hash algorithm).
