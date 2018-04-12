@@ -23,7 +23,10 @@
       主机防范一般采用sync-cache/syn-cookie方式。
         syn-cache一般来说会通过hash表把半连接信息记录下来，而不是急于分配tcb
         syn-cookie则连hash表都不分配，直接根据源ip/port/syn 计算ack的syn_num，这样，等下一个ack回来之后，就可以通过ack_num来对整个连接进行验证。
-      防火墙的防护，基本上都是采用syn-cookie, 注意：syn-cookie在回送syn_ack时，会将wnd_size设置为0，这样，发client就不会发送相应的数据，防火墙也无需保存响应的数据。
+
+      防火墙的防护，基本上都是采用syn-proxy/syn-cookie, 
+         注意：syn-cookie在回送syn_ack时，会将wnd_size设置为0，这样，发client就不会发送相应的数据，防火墙也无需保存响应的数据。
+         syn-proxy 是一个比syn－cookie重量级的技术，一般会建立session，将client的option/windowns_size/mss等相关tcp参数全部记录下来，而syn-cookie一般只记录mss（而且它也是一个近似值).
   3.  但是juniper的防火墙无法防御高级别，由确定性的攻击, 这就需要针对L7层的攻击做特定的防御。 如果防火墙后保护的是web-server, 
       那么配合waf就可以起到很好的防御效果. 如果背后由dns服务器，那么可以部署针对dns服务器的特殊防御设备.
       
