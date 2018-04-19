@@ -1,0 +1,6 @@
+四种类型：
+  1.  anti-spam
+  2.  anti-virus
+  3.  content-filter
+  4.  web-filter(URL filtering).
+  
