@@ -33,3 +33,9 @@ openSSL命令使用详解：https://blog.csdn.net/baidu_36649389/article/details
 ssl背景知识：http://www.cnblogs.com/f-ck-need-u/p/6089523.html
 Linux 相关背景知识：http://www.cnblogs.com/f-ck-need-u/p/7048359.html#blogopenssl
 
+https:
+ 1. 先通过ssl协议进行证书／密钥的协商与验证，然后在通过密钥加密http协议。
+ 2. 先ssl，再http
+ 3. SNI 主要是为了解决一个ip地址为多个域名服务器服务的问题。因为每个域名可能对应不同的证书，而选用哪个证书是根据域名决定的。但是在ssl协商的时候域名是无法知道的，所以对ssl进行sni扩展，以使得报文在ssl握手阶段就能确认服务的域名.
+ 
+
