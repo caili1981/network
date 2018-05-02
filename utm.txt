@@ -6,3 +6,35 @@
 
 utm的主要ui架构： policy->utm policy->av/...->av-profile xxx(继承av-profile的通用配置，并有此profile的私有配置).
 
+av:
+  full AV/expressed-AV/sophos-AV/on-box-av/
+  full-av将文件从流量中剥离，并发送给一个daemon（并非utmd）去执行相关病毒扫描。
+  expressed-av是有一个单独的pme(pattern match engineer, 一个硬件芯片，可以对报文进行逐包扫描). plugin会将报文放入pme的队列，当pme扫描返回时，恢复plugin。
+  full-av/express-av面临的主要问题就是性能问题，因为大部分http协议报文都需要扫描，所以产生了sophos－av。
+  sophos－av包含两个阶段：uri-pre-check/data-check.
+  on-box-av是基于tvp平台的，而且可以绑定线程亲和性，因此大大提升整体性能。实际上低端平台（sme)也可以共用on-box－av技术，只是由于线程的亲和性等问题，而无法简单移植. 而老的高端平台，由于spc是裁剪过的freeBSD，所以，协议栈存在问题，暂时不支持on-box-av.
+  
+
+sophos-av：
+  
+  对一个报文下载的流量（http/ftp/imap/pop3/SMTP)，首先检查uri，如果uri检查通过了，再将checksum发送到sophos－cloud，sophos通过checksum对文件进行检查，这是full-scan??
+  
+MFS是一个网络分布式文件系统：
+  manager-server:负责各个数据存储服务器的管理,文件读写调度,文件空间回收以及恢复.多节点拷贝
+  Metalogger:负责备份 master 服务器的变化日志文件，文件类型为 changelog_ml.*.mfs，以便于在 master server 出问题的时候接替其进行工作
+  data-server:存储文件
+  client-computers：使用mfs
+  
+1.   为什么高端只支持sophos-av，而srxsme却支持kav/eav? 
+2.   RTCOM是什么东西？
+3.   app-proxy是什么东西？
+4.   pre-detection on RE 什么意思？av是在re?
+5.   postfix detection.
+6.   UTMD and  Kaspersky AV Scanners (Control Core/RE)
+7.   RE时mfs-server还是pfe是mfs－server？
+8.   on-box anti-virus是full－scan吧？
+9.   netlogic(pattern match engineer是第三方代码还是自己的代码？eav采用的是什么引擎？
+10.  SXL是什么东西？
+11.  为什么infectted-result不存？
+
+
