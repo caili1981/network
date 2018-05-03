@@ -3,7 +3,9 @@
   2.  anti-virus
   3.  content-filter
   4.  web-filter(URL filtering).
+      
 
+anti-virus:
 utm的主要ui架构： policy->utm policy->av/...->av-profile xxx(继承av-profile的通用配置，并有此profile的私有配置).
 
 av:
@@ -37,4 +39,22 @@ MFS是一个网络分布式文件系统：
 10.  SXL是什么东西？
 11.  为什么infectted-result不存？
 
+web-filtering:
+     1.   integrated web filtering;
+          根据用户配置或者category-server(surfControl Content Portal)
+          基本已经废弃
+     2.   redirect web filtering.
+          hold http-get 报文
+          将url发送到websense redirect server, 封装成私有协议。
+          websense redirect server根据server的配置，返回action给防火墙(私有协议)
+          防火墙根据action执行相应的response。
+     3.   Local web filtering
+          根据本地category执行相应的动作。
+     4.   juniper-enhanced.
+          hold http-get报文
+          将url发送到websense TSC server, 封装成私有协议。
+          websense redirect server根据server的配置，返回category给防火墙(私有协议).
+          防火墙根据category执行相应的action. (websense redirect server返回的是action, 而EWF返回的是category）
+          web-filtering很简单，无需app-proxy的支持。而且只在（长连接，https）的时候才需要tcp－proxy的支持。性能很高。相比之下AV性能非常低下。
 
+   
