@@ -1,0 +1,9 @@
+<openstack设计与实现>
+xen有livert并不提供的一些特性，比如说资源池内的迁移。同一个物理硬盘映射的两个不同虚拟机，在迁移的时候是无需磁盘迁移的。
+消息队列：
+  一般实现远程过程调用RPC，是典型的生产者和消费者队列。
+  对象化，后台有SQL数据库实现。python的对象可以被消息队列序列化成一个SQLtable。可以在SQLtable上建立索引，方便python查询。
+  WSGI(web service gateway interface) 可以将不同的RESTful路由到不同的应用对象，然后将执行结果返回给用户。
+  
+eventlet: python的一个协程库。（非抢占行线程)
+cliff:    command line interface formulation framework, 用来构建命令行程序的。
