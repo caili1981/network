@@ -1,0 +1,6 @@
+iptables共包含四张表, 应用顺序如下：
+  raw->mangle->filter->nat
+五个挂载点：
+  prerouting     forward    post-routing       ===>  这三条路是转发路径(foward)
+          input            output              ===>  这四条路是主机路径(to_host)
+  
