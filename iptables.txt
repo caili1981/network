@@ -3,4 +3,8 @@ iptables共包含四张表, 应用顺序如下：
 五个挂载点：
   prerouting     forward    post-routing       ===>  这三条路是转发路径(foward)
           input            output              ===>  这四条路是主机路径(to_host)
-  
+  
+iptables是否支持alg？
+iptables是否有session这个概念？
+
+iptable的session有两个状态：new/established  第一个报文是new，其他的都是established。
