@@ -3,6 +3,13 @@ iptables共包含四张表, 应用顺序如下：
 五个挂载点：
   prerouting     forward    post-routing       ===>  这三条路是转发路径(foward)
           input            output              ===>  这四条路是主机路径(to_host)
+          
+          
+四个状态：
+  new
+  established
+  related
+  invalid
   
 iptables是否支持alg？
 iptables是否有session这个概念？
