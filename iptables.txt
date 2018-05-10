@@ -10,6 +10,10 @@ iptables共包含四张表, 应用顺序如下：
   established
   related
   invalid
+
+ip_tables可以对tcp的flag设置rule。也可以对tcp连接进行控制。
+ip_tables也可以通过related状态对ftp的数据报文进行控制。
+ip_tables也有类似于srx scheduler的操作。
   
 iptables是否支持alg？
 iptables是否有session这个概念？
