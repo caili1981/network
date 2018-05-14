@@ -1,0 +1,10 @@
+1.  文件隐写术
+  cat 命令可以讲一个exe/elf文件挂在一个普通文件后面. 然后通过gzip打开.
+  例如：
+    1.  首先通过zip压缩 a.exe  === > a.exe.zip
+    2.  cat a.exe.zip >> jack.jpg 
+    3.  通过图片工具打开jack.jpg 看不到a.exe.zip,但是原始图片仍然可用.
+    4.  mv jack.jpg jack.jpg.zip 
+    5.  通过zip打开jack.jpg.zip 能直接提取exe文件，从而绕过病毒软件或者防火墙.
+2.  nmap可以进行端口扫描.
+
