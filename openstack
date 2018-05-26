@@ -21,9 +21,19 @@ nova(虚拟机／computer资源管理）
     computer是云中的虚拟机资源
     scheduler是云中的调度起，可以通过queue选择合适的computer资源。
     conductor是DB的一层封装以防止computer被攻破，恶意用户可以随意操作DB。
+    一台机器默认的虚拟资源和物理资源的比例为：
+          cpu core／virtual－cpu－core 位16:1. 
+          内存利用率为1.5:1. 
     
 swift （对象存储）
   主要用来存储静态，或者使用频率比较低的镜像。而实用频率比较高的对象，应该用块存储（cinder)
+
+cinder (块存储).
+  三种存储类型：
+    1.  non-computer based distribute shared file system(磁盘阵列） 在线迁移方面没有太大的问题。
+    2.  computer node based distrubte shared file system (？？？mount???)
+    3.  本地存储。 在线迁移可能会存在问题。
   
 neutron
   ovs不进提供与linux bridge类似的功能，同时支持sdn，以及夸物理server的连接功能（一个物理服务器上的ovs可以透明的和另一个服务器上的ovs连接）
+
