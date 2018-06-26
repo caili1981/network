@@ -21,8 +21,9 @@
       列出所有运行的docker程序。
   2.  service docker start | stop 
       启动docker守护进程。
-  3.  docker [--name <user_defined_name> ]run -i  -t  <镜像名> <可执行程序路径>
+  3.  docker run -i  -t  [--name <user_defined_name> ] <镜像名> <可执行程序路径>
       -d 可使容器后台运行.
+      docker run [options] image [command] [args] 
   4.  docker start <container_name>
   5.  docker attach <container_name> 附着在容器上.
   6.  docker top <contain_name> 
@@ -48,4 +49,5 @@
 ### 其他
   1.  docker 参考书:
       <第一本docker>
+      <docker 容器与容器云>
   2.  cgroups: control groups。 lxc 就是基于cgroup的一种技术. 
