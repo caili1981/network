@@ -15,7 +15,7 @@
     6.cgroups是一个树形层级关系.
     个人理解，cgroups提供了一种类似于hyperviser的资源管理系统。
   ## namespace 隔离
-    # 隔离项
+    + namespace 分类
       1.  uts<主机名、域名> ??? 为什么起这个名字？
       2.  ipc 信号量，消息队列，内存共享。
       3.  pid 每个不同的namespace里都有一个root进程. 
@@ -24,19 +24,27 @@
           init进程还可以进行信号屏蔽和传递。 父节点(namespace)如果发送sigkill/sigstop给子节点，那么子节点会将所有进程全部销毁。
           
       4.  network 
+          通过veth连通不同的namespace的网络，以达到通信目的。
       5.  mount
+          mount的类型可以分为:
+          -  共享挂载
+              挂载目录的变化能够被其他节点感知。 /lib 目录。
+          -  从属挂载
+              父节点的挂载文件的变化可以被子节点感知，反之则不行。 /bin 目录.
+          -  不可挂载
+              /root目录就属于不可挂载的。
       6.  user & user-group
+          《docker容器与容器云》编写时仍不成熟。
+
     # API
       1.  clone
-          flags: CLONE_NEWIPC CLONE_NEWUTS
+          flags: CLONE_NEWIPC CLONE_NEWUTS CLONE_NEWNET
       2.  setns
           
       3.  unshare
           调用者停留在当前的namespace，而被调用着进入新的namespace.
     # 查看namespace
       1.  ls -al /proc/<pid>/ns/
-      
-    
 
 
 ### docker 命令
