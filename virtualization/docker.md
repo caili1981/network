@@ -7,13 +7,17 @@
   
 # 基本知识   
   + cgourps 
-    1.限制进程组可以使用的资源数量（Resource limiting ）。比如：memory子系统可以为进程组设定一个memory使用上限，一旦进程组使用的内存达到限额再申请内存，就会触发OOM（out of memory）。
+    1.限制进程组可以使用的资源数量（Resource limiting, cpu，内存，io等）。比如：memory子系统可以为进程组设定一个memory使用上限，一旦进程组使用的内存达到限额再申请内存，就会触发OOM（out of memory）。
     2.进程组的优先级控制（Prioritization ）。比如：可以使用cpu子系统为某个进程组分配特定cpu share。
     3.记录进程组使用的资源数量（Accounting ）。比如：可以使用cpuacct子系统记录某个进程组使用的cpu时间
     4.进程组隔离（Isolation）。比如：使用ns子系统可以使不同的进程组使用不同的namespace，以达到隔离的目的，不同的进程组有各自的进程、网络、文件系统挂载空间。
     5.进程组控制（Control）。比如：使用freezer子系统可以将进程组挂起和恢复。
     6.cgroups是一个树形层级关系.
     个人理解，cgroups提供了一种类似于hyperviser的资源管理系统。
+    
+    ***docker的cgroup的资源控制在目录:/sys/fs/cgroup/cpu/docker/<container_id>/ ***
+    
+    
   + namespace 分类
       1.  uts<主机名、域名> ??? 为什么起这个名字？
       2.  ipc 信号量，消息队列，内存共享。
@@ -77,8 +81,8 @@
   
 
 
-### 其他
-  1.  docker 参考书:
+# 其他
+  + docker 参考书:
       <第一本docker>
       <docker 容器与容器云> 这本书对原理的阐述比较到位. 
-  2.  cgroups: control groups。 lxc 就是基于cgroup的一种技术. 
+  + cgroups: control groups。 lxc 就是基于cgroup的一种技术. 
