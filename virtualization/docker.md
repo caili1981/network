@@ -5,6 +5,7 @@
   docker 是一个client－server程序.
   docker 是一套工具集，本身并不算是虚拟化技术，而lxc (linux container) 才是虚拟化技术.
   
+### 基本知识   
   ## cgourps 
     1.限制进程组可以使用的资源数量（Resource limiting ）。比如：memory子系统可以为进程组设定一个memory使用上限，一旦进程组使用的内存达到限额再申请内存，就会触发OOM（out of memory）。
     2.进程组的优先级控制（Prioritization ）。比如：可以使用cpu子系统为某个进程组分配特定cpu share。
@@ -13,6 +14,28 @@
     5.进程组控制（Control）。比如：使用freezer子系统可以将进程组挂起和恢复。
     6.cgroups是一个树形层级关系.
     个人理解，cgroups提供了一种类似于hyperviser的资源管理系统。
+  ## namespace 隔离
+    # 隔离项
+      1.  uts<主机名、域名> ??? 为什么起这个名字？
+      2.  ipc 信号量，消息队列，内存共享。
+      3.  pid 每个不同的namespace里都有一个root进程. 
+          父namespace可以看到子namespace的进程，但是子namespace无法看到父namespace的进程.
+          为了避免孤儿进程，容器内部第一个启动的进程(init)应该具有监控和回收能里，如bash等.
+          init进程还可以进行信号屏蔽和传递。 父节点(namespace)如果发送sigkill/sigstop给子节点，那么子节点会将所有进程全部销毁。
+          
+      4.  network 
+      5.  mount
+      6.  user & user-group
+    # API
+      1.  clone
+          flags: CLONE_NEWIPC CLONE_NEWUTS
+      2.  setns
+          
+      3.  unshare
+          调用者停留在当前的namespace，而被调用着进入新的namespace.
+    # 查看namespace
+      1.  ls -al /proc/<pid>/ns/
+      
     
 
 
@@ -49,5 +72,5 @@
 ### 其他
   1.  docker 参考书:
       <第一本docker>
-      <docker 容器与容器云>
+      <docker 容器与容器云> 这本书对原理的阐述比较到位. 
   2.  cgroups: control groups。 lxc 就是基于cgroup的一种技术. 
