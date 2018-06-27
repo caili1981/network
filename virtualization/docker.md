@@ -15,7 +15,7 @@
     6.cgroups是一个树形层级关系.
     个人理解，cgroups提供了一种类似于hyperviser的资源管理系统。
     
-    ***docker的cgroup的资源控制在目录:/sys/fs/cgroup/cpu/docker/<container_id>/ ***
+    **docker的cgroup的资源控制在目录**:/sys/fs/cgroup/cpu/docker/<container_id>/
     
     
   + namespace 分类
@@ -76,13 +76,9 @@
   13. docker 仓库
       [docker仓库，上面有很多知名软件的docker仓库，可以直接用](https://registry.hub.docker.com/) 
       
-  
-       
-  
-
-
 # 其他
   + docker 参考书:
       <第一本docker>
-      <docker 容器与容器云> 这本书对原理的阐述比较到位. 
+      **<docker 容器与容器云> 这本书对原理的阐述非常到位. **
+      
   + cgroups: control groups。 lxc 就是基于cgroup的一种技术. 
