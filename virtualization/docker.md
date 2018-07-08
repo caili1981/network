@@ -66,6 +66,17 @@
         （是不是对volume的文件进行操作时，其修改并不会跟随docker commit命令。是不是可以用来存储用户操作相关文件，类似于普通磁盘和系统盘？
         
 # docker 网络管理
+  - 内置驱动
+      1.  bridge.
+          和普通虚拟机的bridge方式类似。
+      2.  host.
+          直接利用host网络。
+      3.  overlay.
+          vxlan
+      4.  remote
+          用户自行注册。
+      5.  null
+          只创建loopback接口。
       
   
 # docker 关键概念
