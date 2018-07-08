@@ -49,8 +49,43 @@
           
   + etc
       1.  ls -al /proc/<pid>/ns/
-
-
+  
+# docker 存储.
+  - aufu (advanced multi layer unification filesystem)
+    联合挂载技术.
+    联合挂载技术的缺点：
+      1.  宿主机无法对文件进行方便管理。
+      2.  挂载点跟随操作系统，docker 实例删除时会出现问题。
+      3.  多个容器之间无法共享
+    为改进如上缺陷，引入volume机制。
+      1.  容器创建就初始化。
+      2.  能在不同容器间重用。
+      3.  独立于docker的生命周期。
+      4.  对volume操作不影响镜像
+      docker volume 实际上就是在创建镜像时，在镜像文件系统中mount一个文件夹。
+        （是不是对volume的文件进行操作时，其修改并不会跟随docker commit命令。是不是可以用来存储用户操作相关文件，类似于普通磁盘和系统盘？
+        
+# docker 网络管理
+      
+  
+# docker 关键概念
+  － registry.
+      存放所有镜像的网站。 如: hub.docker.com 
+  － repository
+      一组具有特定功能的镜像组.  如jackcai/ubuntu
+  － manifest.
+      元文件清单。保存镜像所修改过的文件清单。
+  － image/layer.
+      镜像的分层关系。  一个特定的镜像，可能是存放在某一个用户名下的，具有多个分层结构的镜像。
+      所有一个镜像可以通过  registery/repository/image-layer1/image-layer2/xxxx 来进行表示。
+  － docker file.
+      docker commit: 提交一个镜像到registry上
+      docker build:  在本地创建一个基础镜像.
+      docker export: 用户持久化容器，会丢失所有的历史。
+      docker save-loaded: 则会在本地保存容器的历史层，以方便回滚。
+      docker push：  上传容器到仓库。
+      docker pull:  下载容器到仓库。
+      
 # docker 命令
   1.  docker info 
       列出所有运行的docker程序。
@@ -82,3 +117,5 @@
       **<docker 容器与容器云> 这本书对原理的阐述非常到位. **
       
   + cgroups: control groups。 lxc 就是基于cgroup的一种技术. 
+  
+  
