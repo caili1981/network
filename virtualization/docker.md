@@ -77,25 +77,42 @@
           用户自行注册。
       5.  null
           只创建loopback接口。
-      
+          
+# docker 暂未实现的虚拟化
+   -  time
+   -  syslog
+   -  dev
+   -  proc
+   -  sys
+   -  系统调用
+      可以通过 seccomp 来限定docker虚拟机系统调用的范围。
+   由此可见，docker离真正的虚拟化尚有一定距离。
   
 # docker 关键概念
-  － registry.
+  - registry.
       存放所有镜像的网站。 如: hub.docker.com 
-  － repository
+  - repository
       一组具有特定功能的镜像组.  如jackcai/ubuntu
-  － manifest.
+  - manifest.
       元文件清单。保存镜像所修改过的文件清单。
-  － image/layer.
+  - image/layer.
       镜像的分层关系。  一个特定的镜像，可能是存放在某一个用户名下的，具有多个分层结构的镜像。
       所有一个镜像可以通过  registery/repository/image-layer1/image-layer2/xxxx 来进行表示。
-  － docker file.
+  - docker file.
       docker commit: 提交一个镜像到registry上
       docker build:  在本地创建一个基础镜像.
       docker export: 用户持久化容器，会丢失所有的历史。
       docker save-loaded: 则会在本地保存容器的历史层，以方便回滚。
       docker push：  上传容器到仓库。
       docker pull:  下载容器到仓库。
+      
+# docker 安全
+  - 磁盘资源限制。
+      docker虚拟机上的文件其实也是宿主机上的一个文件，如果不加以限制则可能出现一个虚拟机把宿主机磁盘耗尽的情况。
+  - 容器逃逸
+      通过某些系统api如open_by_handle_at暴力调用系统api，获取宿主机的敏感文件。
+  - 网络共享，ddos攻击等。
+  - 
       
 # docker 命令
   1.  docker info 
