@@ -139,6 +139,7 @@
   13. docker 仓库
       [docker仓库，上面有很多知名软件的docker仓库，可以直接用](https://registry.hub.docker.com/) 
       
+      
 # 其他
   + docker 参考书:
       <第一本docker>
@@ -151,5 +152,8 @@
   - nsenter 进入容器，不同于docker attach（这个命令离开就会停止容器，且不能多个窗口登陆容器)
       $ docker inspect -f {{.State.Pid}} 容器名或者容器id   #每一个容器都有.State.Pid，所以这个命令除了容器的id需要我们根据docker ps -a去查找，其他的全部为固定的格式
       $ nsenter --target 上面查到的进程id --mount --uts --ipc --net --pid  #输入该命令便进入到容器中
-  
+  - etcd
+    用于键值存储，和服务发现，提供了丰富的注册和watch机制。
+    raft分布式一致性算法，分布式时序控制等等。
+    
   
