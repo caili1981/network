@@ -77,6 +77,12 @@
           用户自行注册。
       5.  null
           只创建loopback接口。
+      6.  nat模式
+          container 通过eth1 连接宿主机的veth, 然后通过iptables进行nat转换。
+      7.  other container.
+          host & nat的组合. 
+          container2 用 container1的ip & mac & namespace. container1 出docker的时候用nat。
+          用于容器之间通信非常频繁的情况。
           
 # docker 暂未实现的虚拟化
    -  time
@@ -147,7 +153,7 @@
       
       
   14. docker-compose 
-      docker编排工具.
+      docker编排工具. 编辑一个docker-compose.yml 文件即可。
       
       
   15. docker tag
