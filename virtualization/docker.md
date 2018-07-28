@@ -113,6 +113,11 @@
       通过某些系统api如open_by_handle_at暴力调用系统api，获取宿主机的敏感文件。
   - 网络共享，ddos攻击等。
   - 
+  
+# dockerfile
+  类似于脚本，可以创建和编辑docker镜像。
+  ## docker build -t <image_name> ./   
+  待续
       
 # docker 命令
   1.  docker info 
@@ -129,8 +134,9 @@
   7.  docker exec -d <container_name> <process> 
   8.  docker inspect <container_name> 
   9.  docker rm <container_name>
-  10. docker pull <image_name:ver>
+  10. docker pull/push <image_name:ver>
       从镜像仓库(docker hub)获取一个镜像. 如果没有指定版本号，则取最新的版本.
+      docker push will only push the image to registry. If you installed some software in the instance, it will not push to registry server. 
   11. docker search <image-name> 
       从镜像仓库里查找一个镜像. 
   12. docker commit
@@ -138,6 +144,16 @@
   
   13. docker 仓库
       [docker仓库，上面有很多知名软件的docker仓库，可以直接用](https://registry.hub.docker.com/) 
+      
+      
+  14. docker-compose 
+      docker编排工具.
+      
+      
+  15. docker tag
+      将本地image归入某一个仓库。
+   
+      
       
       
 # 其他
