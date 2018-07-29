@@ -154,12 +154,20 @@
       
   14. docker-compose 
       docker编排工具. 编辑一个docker-compose.yml 文件即可。
-      
+      使用于单主机的情况，但是对于跨主机的部署和编排，docker-compose能力有限。
+      docker-machine
+      可以用于控制docker宿主虚拟机，支持vmware／virtualbox等. 类似于libvirt???
+      swarm: 用于操纵多台docker宿主机。
       
   15. docker tag
       将本地image归入某一个仓库。
-   
       
+      
+      
+  16. docker network ls
+   
+  17. docker search <xxx> 
+      docker hub查找镜像
       
       
 # 其他
