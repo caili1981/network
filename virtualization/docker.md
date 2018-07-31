@@ -123,7 +123,7 @@
 # dockerfile
   类似于脚本，可以创建和编辑docker镜像。
   ## docker build -t <image_name> ./   
-  待续
+  也可以通过docker commit <container_name> <image:tag> 来创建image，这种方式比较灵活，能够自动纪录所有修改，而不需要写dockerfile脚本。
       
 # docker 命令
   1.  docker info 
@@ -168,7 +168,39 @@
    
   17. docker search <xxx> 
       docker hub查找镜像
+
+# dockerfile
+  1.  docker run/dockerfile cmd/entrypoint 区别
+    - CMD:
+      docker启动的默认命令, 只有最后一条生效
+    - docker run
+      docker启动时指定的参数，会讲cmd命令覆盖。
+    - entry point
+      如果docker run不指定命令执行参数，则执行entry-point所指定的命令，如果docker－run指定了启动命令，则将docker-run 指定的命令作为参数，传给entry-point, entry point 比较灵活，可以和docker run结合起来，为运行时传递参数。     
       
+  2.  WORKDIR 参数
+    指定工作目录. docker run -w 会覆盖WORKDIR的工作目录
+  
+  3.  ENV
+    指定环境变量. docker run -e 会覆盖同样的环境变量。
+  
+  4.  USER
+    指定镜像会运行的用户.
+  
+  5.  VOLUME
+    添加卷。 docker run -v提供同样的功能。
+    
+  6.  ADD命令
+    将dockerfile文件夹下的文件拷贝到镜像中.
+    
+  7.  COPY
+    和ADD类似，但是不提供解压的功能。
+  
+  8.  ON BUILD
+    镜像在被别的镜像作为基础镜像时触发。
+    只会在子镜像中执行一次，不会在孙子镜像中执行。
+    
+    
       
 # 其他
   + docker 参考书:
