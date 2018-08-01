@@ -83,6 +83,10 @@
           host & nat的组合. 
           container2 用 container1的ip & mac & namespace. container1 出docker的时候用nat。
           用于容器之间通信非常频繁的情况。
+  - docker netowrk 命令
+    + docker netowrk connnect <bridge_name>  <container_name>
+      通过这个命令可以将一个docker容器连接入一个交换机. 这个交换机上有dhcp的功能，能自动为docker分配ip地址。
+    + docker netowrk   
           
 # docker 暂未实现的虚拟化
    -  time
