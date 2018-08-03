@@ -214,12 +214,15 @@
   + cgroups: control groups。 lxc 就是基于cgroup的一种技术. 
   
   - ip netns exec <net_namespace> <command> 
-    用来对namespace的网络进行配置。
+    用来对namespace的网络进行配置。 每个不同的容器，都会对应不同的namespace. 可以在ls -al /proc/self/netns/ 查看当前容器的网络namespace.
   - nsenter 进入容器，不同于docker attach（这个命令离开就会停止容器，且不能多个窗口登陆容器)
       $ docker inspect -f {{.State.Pid}} 容器名或者容器id   #每一个容器都有.State.Pid，所以这个命令除了容器的id需要我们根据docker ps -a去查找，其他的全部为固定的格式
       $ nsenter --target 上面查到的进程id --mount --uts --ipc --net --pid  #输入该命令便进入到容器中
+      在容器中，由于安全问题(**什么安全问题**)，一般情况下，是不允许调用ifconfig, route add ...等命令的，必须通过docker exec --priviledged ...进入容器。
+      
   - etcd
     用于键值存储，和服务发现，提供了丰富的注册和watch机制。
     raft分布式一致性算法，分布式时序控制等等。
+  - checksum offload.
     
   
