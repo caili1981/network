@@ -24,3 +24,37 @@
       端口运行在dpdk模式下, 需要专有的dpdk-port, dpdk是死循环，因此会导致host-server性能出现瓶颈，不适合高密度部署。
       
       
+ CSRX 内核参数：
+   -  GRO/LRO
+      ethtool -K eth0 gro off
+   -  并发连接数
+      sysctl -w net.netfilter.nf_conntrack_max=1000000
+   -  tcp timeout
+      sysctl -w net.netfilter.nf_conntrack_tcp_timeout_established=1000000
+   -  ARP
+      sysctl -w net.ipv4.neigh.default.gc_thresh1=1024
+      
+  CSRX packet driver:
+    - dpdk based poll mode driver
+    - interupt based driver
+  
+  CSRX performance
+    - throughput
+      1.8G (dpdk)  vs 1.5G (interrupt driver).
+    - start/down time
+      3 second (start) vs 1 second(stopp).
+      
+
+
+
+
+ **other**
+  cat repositories.json | python -json.tool    ===> 这个命令可以以树形格式查看json文件，很方便。
+  
+  
+ **docker相关**
+  root@ubuntu-stable:/var/lib/docker/image/aufs# cat repositories.json | python -m json.tool     ===> 这个地方存放docker-image名称。 
+  docker images输出的imageid，实际上是docker sha的前几位。
+  https://segmentfault.com/a/1190000009730986 image的层次讲的比较清楚。
+  
+  
