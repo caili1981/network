@@ -224,5 +224,7 @@
     用于键值存储，和服务发现，提供了丰富的注册和watch机制。
     raft分布式一致性算法，分布式时序控制等等。
   - checksum offload.
+    为了加速虚拟网络之间的报文传输，发送时默认是不加checksum的，所以容易导致接收端收到报文不响应。
+    通过执行一下命令：ethtool -K eth0 tx off 可以关掉checksum offload.
     
   
