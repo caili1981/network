@@ -1,15 +1,15 @@
 # 基本概念
-  sdn
+  + sdn
     software designed network.
-  openflow
-    sdn里的主要协议. 最新是1.4.
-    南向接口: 控制交换机。
-    北向接口: 为服务提供可编程api. 如：多个控制器之间的通信问题，等等。
-    sdn的flowtable: 一组嵌套的rule组成。一个table的action可以被设定为下一跳. 
-    open-flow的三种消息控制类型:
-      1.  controller到交换机的消息。 用于controller控制网元设备.
-      2.  对称的消息。 一问一答的消息. 如hello报文.
-      3.  异步的消息. 类似于snmp里的trap消息，由交换机到控制器。 如packet-in 消息，由交换机发送到控制器。
+  + openflow
+    - sdn里的主要协议. 最新是1.4.
+    - 南向接口: 控制交换机。
+    - 北向接口: 为服务提供可编程api. 如：多个控制器之间的通信问题，等等。
+    - sdn的flowtable: 一组嵌套的rule组成。一个table的action可以被设定为下一跳. 
+    - open-flow的三种消息控制类型:
+      -  controller到交换机的消息。 用于controller控制网元设备.
+      -  对称的消息。 一问一答的消息. 如hello报文.
+      -  异步的消息. 类似于snmp里的trap消息，由交换机到控制器。 如packet-in 消息，由交换机发送到控制器。
       
     
 
