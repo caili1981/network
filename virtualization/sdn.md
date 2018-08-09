@@ -33,3 +33,12 @@
   openflow交换机和传统交换机的区别:
     1.  openflow的交换机和传统交换机应该都有acl和mac转发表？？？就是acl表和流表之间的区别?
     2.  
+
+
+# other
+  - IFmap (Interface for Metadata Access Points) 
+    The IF-MAP protocol defines a publish/subscribe/search mechanism with a set of identifiers and data types.
+  - 目前市面上的几种方案：
+    1.  openflow + ovs
+    2.  opendaylight + ovs.
+    3.  contrail + vRouter. 
