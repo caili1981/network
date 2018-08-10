@@ -34,11 +34,20 @@ cinder (块存储).
     2.  computer node based distrubte shared file system (？？？mount???)
     3.  本地存储。 在线迁移可能会存在问题。
   
-neutron
-  ovs不进提供与linux bridge类似的功能，同时支持sdn，以及夸物理server的连接功能（一个物理服务器上的ovs可以透明的和另一个服务器上的ovs连接）
+# neutron
+  － 三个模块:
+    + API server.
+      和交换机、路由器以及其他网络设备互操作的api.
+    + plugins & agent.
+      用于响应api－server，并创建网络。
+    + message queue.
+  - ovs不仅提供与linux bridge类似的功能，同时支持sdn，以及夸物理server的连接功能（一个物理服务器上的ovs可以透明的和另一个服务器上的ovs连接）
+  
   每个节点（不管是computer node还是其他)，最少需要两个网卡。主要网络需求为：
     1.  内网访问。
     2.  外网访问。
     3.  存储访问。
     4.  租户内部网络等等。
+    
+    
 
