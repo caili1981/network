@@ -44,7 +44,7 @@ cinder (块存储).
   - ovs不仅提供与linux bridge类似的功能，同时支持sdn，以及夸物理server的连接功能（一个物理服务器上的ovs可以透明的和另一个服务器上的ovs连接）
   
   - 每个节点（不管是computer node还是其他)，最少需要两个网卡。主要网络需求为：
-    1.  内网访问。
+    1.  管理访问。
     2.  外网访问。
     3.  存储访问。
     4.  租户内部网络等等。
@@ -66,10 +66,12 @@ cinder (块存储).
     和macVlan类似，在送入虚拟机内核时， 或者发出虚拟机内核时，都会讲报文以文件形式展现给用户空间。便于用户进行操作。
   [详细讲义](https://blog.kghost.info/2013/03/27/linux-network-tun/)
   
-# other concept
+# concept
   + user, tenant, role
     - user: 用户
     - tenant: 用户组，对应一个部门.
     - role: 角色，普通用户，超级用户等等, 不同的role会绑定不同的权限。
   + instance.
-    代表运
+    代表运算能力的单元. 比如虚拟机.
+  + host aggregate
+    代表一类服务器，以方便于动态迁移。如‘高性能’服务器，‘amd’服务器，’intel‘服务器，等等。
