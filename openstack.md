@@ -50,6 +50,9 @@ cinder (块存储).
     4.  租户内部网络等等。
    
    - ML2 (module layer 2)
+   
+   - address scope
+     address scope 相当于tanent. 同一个address-scope可以互通。不同的address-scope通过nat互通.address-scope 内部地址不能重叠。address-scope之间的地址可以重叠。
     
 
 # tap, tun, macVlan, macVtap
@@ -62,3 +65,9 @@ cinder (块存储).
   + macVtap
     和macVlan类似，在送入虚拟机内核时， 或者发出虚拟机内核时，都会讲报文以文件形式展现给用户空间。便于用户进行操作。
   [详细讲义](https://blog.kghost.info/2013/03/27/linux-network-tun/)
+  
+# other concept
+  + user, tenant, role
+    - user: 用户
+    - tenant: 用户组，对应一个部门.
+    - role: 角色，普通用户，超级用户等等。
