@@ -50,11 +50,45 @@ cinder (块存储).
     4.  租户内部网络等等。
    
    - ML2 (module layer 2)
+     + drive 类型: 
+      + type driver
+        vlan, vxlan, gre, flat，表示二层通过什么标准技术互联。
+      + mechanism driver
+        linux bridge, ovs, ..., 表示，二层通过某种类型的虚拟设备互联。这种虚拟设备都支持type driver所列的特性.
+     + 每个nova计算节点上都有一个ml2 agent的节点，用来实现虚拟机上的网络连通。  
    
    - address scope
      address scope 相当于tanent. 同一个address-scope可以互通。不同的address-scope通过nat互通.address-scope 内部地址不能重叠。address-scope之间的地址可以重叠。
     
-
+# glance
+  + 镜像格式 (虚拟机)
+    - raw 没有经过优化的格式，或者称之为裸格式。磁盘和预先分配大小一样，占用空间比较大，但是性能很好。
+    - qcow2, 经过优化，大小性能扩展， 性能比较差。
+    - vhd, vmware, virtualbox 所支持的。
+    - vmdk, 通用格式。
+    - vdi, virtual box 所支持的。
+    - iso, 光盘镜像，做归档之用。
+  + 容器格式
+    - Bare
+    - ovf (open virtual machine format), 用的最多的一种格式。
+    - aki
+  + 镜像制作步骤:
+    - 调整磁盘大小.
+    - 调整网络配置，如mac地址等等。
+    - ssh server启动。
+    - 调整防火墙设置。
+    - ssh-key的设置。
+  + 镜像制作工具:
+    qume-img 可以用于转换镜像。
+    cloud-init 工具可以用来修改镜像相关参数。
+    
+  + glance 存储镜像，通过一个store-adapter来屏蔽底层存储的区别.底层存储技术有:
+    - swift store. 
+    - s3 (amazon) 
+    - file system. （本地文件系统)
+    - HTTP server store. 
+    
+   
 # tap, tun, macVlan, macVtap
   + tap
     二层口。可以通过写文件的方式对报文进行操作。内核发送或者接收报文时，会将报文存入/dev/tap文件。
@@ -75,3 +109,8 @@ cinder (块存储).
     代表运算能力的单元. 比如虚拟机.
   + host aggregate
     代表一类服务器，以方便于动态迁移。如‘高性能’服务器，‘amd’服务器，’intel‘服务器，等等。
+  
+# other
+  + 交互方式。
+    - 模块之间用http的restful api(HTTP)提供。比如nova和neutron。
+    - 模块内部，用rabbitq等消息队列进行交互。
