@@ -70,4 +70,4 @@ cinder (块存储).
   + user, tenant, role
     - user: 用户
     - tenant: 用户组，对应一个部门.
-    - role: 角色，普通用户，超级用户等等。
+    - role: 角色，普通用户，超级用户等等, 不同的role会绑定不同的权限。
