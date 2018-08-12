@@ -88,6 +88,15 @@ cinder (块存储).
     - file system. （本地文件系统)
     - HTTP server store. 
     
+ # swift: 对象存储.
+  + 微博，微盘其实就是用的swift技术。
+  + 存储分类
+    - 块存储：sata, iscsi,
+    - 文件存储: ntfs
+    - 对象存储: http, restful API. 如亚马逊的S3.
+    
+    
+    
    
 # tap, tun, macVlan, macVtap
   + tap
