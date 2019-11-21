@@ -87,6 +87,10 @@
     + docker netowrk connnect <bridge_name>  <container_name>
       通过这个命令可以将一个docker容器连接入一个交换机. 这个交换机上有dhcp的功能，能自动为docker分配ip地址。
     + docker netowrk   
+  - namespace
+    - docker 容器将网络命名空间隐藏了，因此ip netns <namespace> ls 无法查看.
+      - 可以通过如下命令将容器恢复.
+        > ln -s /proc/容器进程号/ns/net /var/run/netns/容器
           
 # docker 暂未实现的虚拟化
    -  time
